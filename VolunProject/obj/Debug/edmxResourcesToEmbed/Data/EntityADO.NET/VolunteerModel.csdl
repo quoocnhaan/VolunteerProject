@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VolunteersDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RoleName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="0" />
+    <Property Name="state" Type="Boolean" />
+    <NavigationProperty Name="Volunteers" Relationship="Self.FK_Volunteer_Account" FromRole="Account" ToRole="Volunteer" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="EventName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DistrictId" Type="Int32" />
+    <Property Name="CityId" Type="Int32" />
+    <Property Name="WardId" Type="Int32" />
+    <Property Name="StartDate" Type="DateTime" Precision="7" />
+    <Property Name="EndDate" Type="DateTime" Precision="7" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="CategoryId" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="state" Type="Boolean" />
+    <NavigationProperty Name="EventCategory" Relationship="Self.FK__Event__CategoryI__4D94879B" FromRole="Event" ToRole="EventCategory" />
+    <NavigationProperty Name="Registrations" Relationship="Self.FK__Registrat__Event__5165187F" FromRole="Event" ToRole="Registration" />
+  </EntityType>
+  <EntityType Name="EventCategory">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="CategoryImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="Boolean" />
+    <NavigationProperty Name="Events" Relationship="Self.FK__Event__CategoryI__4D94879B" FromRole="EventCategory" ToRole="Event" />
+  </EntityType>
+  <EntityType Name="QuanHuyen">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="tenQuanHuyen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tinhThanhPhoId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TinhThanhPho" Relationship="Self.FK_QuanHuyen_TinhThanhPho_tinhThanhPhoId" FromRole="QuanHuyen" ToRole="TinhThanhPho" />
+    <NavigationProperty Name="XaPhuongs" Relationship="Self.FK_XaPhuong_QuanHuyen_quanHuyenId" FromRole="QuanHuyen" ToRole="XaPhuong" />
+  </EntityType>
+  <EntityType Name="QuocGia">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="tenQuocGia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TinhThanhPhoes" Relationship="Self.FK_TinhThanhPho_QuocGia_quocGiaId" FromRole="QuocGia" ToRole="TinhThanhPho" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="RegistrationID" />
+    </Key>
+    <Property Name="RegistrationID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="VolunteerID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="EventID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="RegistrationDate" Type="DateTime" Precision="7" />
+    <Property Name="CheckIn" Type="Boolean" />
+    <Property Name="CheckOut" Type="Boolean" />
+    <Property Name="CheckInDate" Type="DateTime" Precision="7" />
+    <Property Name="CheckOutDate" Type="DateTime" Precision="7" />
+    <Property Name="state" Type="Boolean" />
+    <NavigationProperty Name="Event" Relationship="Self.FK__Registrat__Event__5165187F" FromRole="Registration" ToRole="Event" />
+    <NavigationProperty Name="Volunteer" Relationship="Self.FK__Registrat__Volun__5070F446" FromRole="Registration" ToRole="Volunteer" />
+  </EntityType>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+    </Key>
+    <Property Name="ReviewID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="VolunteerID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="ReviewPoint" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ReviewDate" Type="DateTime" Precision="0" />
+    <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Volunteer" Relationship="Self.FK_Review_Volunteer" FromRole="Review" ToRole="Volunteer" />
+  </EntityType>
+  <EntityType Name="ReviewList">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+    </Key>
+    <Property Name="ReviewID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ReviewerID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="State" Type="Boolean" />
+    <NavigationProperty Name="Volunteer" Relationship="Self.FK__ReviewLis__Revie__571DF1D5" FromRole="ReviewList" ToRole="Volunteer" />
+  </EntityType>
+  <EntityType Name="Reward">
+    <Key>
+      <PropertyRef Name="RewardID" />
+    </Key>
+    <Property Name="RewardID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="RewardImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RewardName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="RedeemPoint" Type="Int32" />
+    <Property Name="state" Type="Boolean" />
+    <NavigationProperty Name="VolunteerRewards" Relationship="Self.FK__Volunteer__Rewar__48CFD27E" FromRole="Reward" ToRole="VolunteerReward" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SysIndex">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IndexName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="currentIndex" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TinhThanhPho">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="tenTinhThanhPho" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quocGiaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="QuanHuyens" Relationship="Self.FK_QuanHuyen_TinhThanhPho_tinhThanhPhoId" FromRole="TinhThanhPho" ToRole="QuanHuyen" />
+    <NavigationProperty Name="QuocGia" Relationship="Self.FK_TinhThanhPho_QuocGia_quocGiaId" FromRole="TinhThanhPho" ToRole="QuocGia" />
+  </EntityType>
+  <EntityType Name="Volunteer">
+    <Key>
+      <PropertyRef Name="VolunteerID" />
+    </Key>
+    <Property Name="VolunteerID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="DistrictId" Type="Int32" />
+    <Property Name="CityId" Type="Int32" />
+    <Property Name="WardId" Type="Int32" />
+    <Property Name="BirthDate" Type="DateTime" Precision="7" />
+    <Property Name="AccountID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="PrestigeScore" Type="Int32" />
+    <Property Name="RewardPoint" Type="Int32" />
+    <Property Name="state" Type="Boolean" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Volunteer_Account" FromRole="Volunteer" ToRole="Account" />
+    <NavigationProperty Name="Registrations" Relationship="Self.FK__Registrat__Volun__5070F446" FromRole="Volunteer" ToRole="Registration" />
+    <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Volunteer" FromRole="Volunteer" ToRole="Review" />
+    <NavigationProperty Name="ReviewLists" Relationship="Self.FK__ReviewLis__Revie__571DF1D5" FromRole="Volunteer" ToRole="ReviewList" />
+    <NavigationProperty Name="VolunteerRewards" Relationship="Self.FK__Volunteer__Volun__47DBAE45" FromRole="Volunteer" ToRole="VolunteerReward" />
+  </EntityType>
+  <EntityType Name="VolunteerReward">
+    <Key>
+      <PropertyRef Name="VolunteerID" />
+      <PropertyRef Name="RewardID" />
+    </Key>
+    <Property Name="VolunteerID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="RewardID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="RedeemDate" Type="DateTime" Precision="7" />
+    <Property Name="RedeemCount" Type="Int32" />
+    <Property Name="state" Type="Boolean" />
+    <NavigationProperty Name="Reward" Relationship="Self.FK__Volunteer__Rewar__48CFD27E" FromRole="VolunteerReward" ToRole="Reward" />
+    <NavigationProperty Name="Volunteer" Relationship="Self.FK__Volunteer__Volun__47DBAE45" FromRole="VolunteerReward" ToRole="Volunteer" />
+  </EntityType>
+  <EntityType Name="XaPhuong">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="tenXaPhuong" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="quanHuyenId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="QuanHuyen" Relationship="Self.FK_XaPhuong_QuanHuyen_quanHuyenId" FromRole="XaPhuong" ToRole="QuanHuyen" />
+  </EntityType>
+  <Association Name="FK_Volunteer_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="Volunteer">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Event__CategoryI__4D94879B">
+    <End Role="EventCategory" Type="Self.EventCategory" Multiplicity="0..1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventCategory">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registrat__Event__5165187F">
+    <End Role="Event" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="Registration">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuanHuyen_TinhThanhPho_tinhThanhPhoId">
+    <End Role="TinhThanhPho" Type="Self.TinhThanhPho" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QuanHuyen" Type="Self.QuanHuyen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TinhThanhPho">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="QuanHuyen">
+        <PropertyRef Name="tinhThanhPhoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_XaPhuong_QuanHuyen_quanHuyenId">
+    <End Role="QuanHuyen" Type="Self.QuanHuyen" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="XaPhuong" Type="Self.XaPhuong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuanHuyen">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="XaPhuong">
+        <PropertyRef Name="quanHuyenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TinhThanhPho_QuocGia_quocGiaId">
+    <End Role="QuocGia" Type="Self.QuocGia" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TinhThanhPho" Type="Self.TinhThanhPho" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuocGia">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TinhThanhPho">
+        <PropertyRef Name="quocGiaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registrat__Volun__5070F446">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+    <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="VolunteerID" />
+      </Principal>
+      <Dependent Role="Registration">
+        <PropertyRef Name="VolunteerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Volunteer">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+    <End Role="Review" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="VolunteerID" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="VolunteerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReviewLis__Revie__571DF1D5">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+    <End Role="ReviewList" Type="Self.ReviewList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="VolunteerID" />
+      </Principal>
+      <Dependent Role="ReviewList">
+        <PropertyRef Name="ReviewerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Volunteer__Rewar__48CFD27E">
+    <End Role="Reward" Type="Self.Reward" Multiplicity="1" />
+    <End Role="VolunteerReward" Type="Self.VolunteerReward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reward">
+        <PropertyRef Name="RewardID" />
+      </Principal>
+      <Dependent Role="VolunteerReward">
+        <PropertyRef Name="RewardID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Volunteer__Volun__47DBAE45">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+    <End Role="VolunteerReward" Type="Self.VolunteerReward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="VolunteerID" />
+      </Principal>
+      <Dependent Role="VolunteerReward">
+        <PropertyRef Name="VolunteerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VolunteersDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="EventCategories" EntityType="Self.EventCategory" />
+    <EntitySet Name="QuanHuyens" EntityType="Self.QuanHuyen" />
+    <EntitySet Name="QuocGias" EntityType="Self.QuocGia" />
+    <EntitySet Name="Registrations" EntityType="Self.Registration" />
+    <EntitySet Name="Reviews" EntityType="Self.Review" />
+    <EntitySet Name="ReviewLists" EntityType="Self.ReviewList" />
+    <EntitySet Name="Rewards" EntityType="Self.Reward" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="SysIndexes" EntityType="Self.SysIndex" />
+    <EntitySet Name="TinhThanhPhoes" EntityType="Self.TinhThanhPho" />
+    <EntitySet Name="Volunteers" EntityType="Self.Volunteer" />
+    <EntitySet Name="VolunteerRewards" EntityType="Self.VolunteerReward" />
+    <EntitySet Name="XaPhuongs" EntityType="Self.XaPhuong" />
+    <AssociationSet Name="FK_Volunteer_Account" Association="Self.FK_Volunteer_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Volunteer" EntitySet="Volunteers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Event__CategoryI__4D94879B" Association="Self.FK__Event__CategoryI__4D94879B">
+      <End Role="EventCategory" EntitySet="EventCategories" />
+      <End Role="Event" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registrat__Event__5165187F" Association="Self.FK__Registrat__Event__5165187F">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="Registration" EntitySet="Registrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuanHuyen_TinhThanhPho_tinhThanhPhoId" Association="Self.FK_QuanHuyen_TinhThanhPho_tinhThanhPhoId">
+      <End Role="TinhThanhPho" EntitySet="TinhThanhPhoes" />
+      <End Role="QuanHuyen" EntitySet="QuanHuyens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_XaPhuong_QuanHuyen_quanHuyenId" Association="Self.FK_XaPhuong_QuanHuyen_quanHuyenId">
+      <End Role="QuanHuyen" EntitySet="QuanHuyens" />
+      <End Role="XaPhuong" EntitySet="XaPhuongs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TinhThanhPho_QuocGia_quocGiaId" Association="Self.FK_TinhThanhPho_QuocGia_quocGiaId">
+      <End Role="QuocGia" EntitySet="QuocGias" />
+      <End Role="TinhThanhPho" EntitySet="TinhThanhPhoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registrat__Volun__5070F446" Association="Self.FK__Registrat__Volun__5070F446">
+      <End Role="Volunteer" EntitySet="Volunteers" />
+      <End Role="Registration" EntitySet="Registrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Volunteer" Association="Self.FK_Review_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteers" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReviewLis__Revie__571DF1D5" Association="Self.FK__ReviewLis__Revie__571DF1D5">
+      <End Role="Volunteer" EntitySet="Volunteers" />
+      <End Role="ReviewList" EntitySet="ReviewLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Volunteer__Rewar__48CFD27E" Association="Self.FK__Volunteer__Rewar__48CFD27E">
+      <End Role="Reward" EntitySet="Rewards" />
+      <End Role="VolunteerReward" EntitySet="VolunteerRewards" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Volunteer__Volun__47DBAE45" Association="Self.FK__Volunteer__Volun__47DBAE45">
+      <End Role="Volunteer" EntitySet="Volunteers" />
+      <End Role="VolunteerReward" EntitySet="VolunteerRewards" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

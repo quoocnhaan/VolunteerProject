@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VolunteersDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="AccountName" Type="varchar" MaxLength="50" />
+    <Property Name="UserImage" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar" MaxLength="500" />
+    <Property Name="RoleName" Type="varchar" MaxLength="20" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="state" Type="bit" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="EventName" Type="nvarchar" MaxLength="200" />
+    <Property Name="DistrictId" Type="int" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="WardId" Type="int" />
+    <Property Name="StartDate" Type="datetime2" Precision="7" />
+    <Property Name="EndDate" Type="datetime2" Precision="7" />
+    <Property Name="Status" Type="nchar" MaxLength="1" />
+    <Property Name="CategoryId" Type="nchar" MaxLength="100" />
+    <Property Name="state" Type="bit" />
+  </EntityType>
+  <EntityType Name="EventCategory">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="CategoryImage" Type="nvarchar(max)" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
+    <Property Name="state" Type="bit" />
+  </EntityType>
+  <EntityType Name="QuanHuyen">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="tenQuanHuyen" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="tinhThanhPhoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuocGia">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="tenQuocGia" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="RegistrationID" />
+    </Key>
+    <Property Name="RegistrationID" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="VolunteerID" Type="nchar" MaxLength="100" />
+    <Property Name="EventID" Type="nchar" MaxLength="100" />
+    <Property Name="RegistrationDate" Type="datetime2" Precision="7" />
+    <Property Name="CheckIn" Type="bit" />
+    <Property Name="CheckOut" Type="bit" />
+    <Property Name="CheckInDate" Type="datetime2" Precision="7" />
+    <Property Name="CheckOutDate" Type="datetime2" Precision="7" />
+    <Property Name="state" Type="bit" />
+  </EntityType>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+    </Key>
+    <Property Name="ReviewID" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="VolunteerID" Type="nchar" MaxLength="100" />
+    <Property Name="ReviewPoint" Type="int" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ReviewDate" Type="date" />
+    <Property Name="state" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ReviewList">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+    </Key>
+    <Property Name="ReviewID" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="ReviewerID" Type="nchar" MaxLength="100" />
+    <Property Name="State" Type="bit" />
+  </EntityType>
+  <EntityType Name="Reward">
+    <Key>
+      <PropertyRef Name="RewardID" />
+    </Key>
+    <Property Name="RewardID" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="RewardImage" Type="nvarchar(max)" />
+    <Property Name="RewardName" Type="nvarchar" MaxLength="200" />
+    <Property Name="RedeemPoint" Type="int" />
+    <Property Name="state" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="SysIndex">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prefix" Type="varchar" MaxLength="20" />
+    <Property Name="IndexName" Type="varchar" MaxLength="50" />
+    <Property Name="currentIndex" Type="int" />
+  </EntityType>
+  <EntityType Name="TinhThanhPho">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="tenTinhThanhPho" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="quocGiaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Volunteer">
+    <Key>
+      <PropertyRef Name="VolunteerID" />
+    </Key>
+    <Property Name="VolunteerID" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
+    <Property Name="DistrictId" Type="int" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="WardId" Type="int" />
+    <Property Name="BirthDate" Type="datetime2" Precision="7" />
+    <Property Name="AccountID" Type="nchar" MaxLength="100" />
+    <Property Name="Gender" Type="bit" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="PrestigeScore" Type="int" />
+    <Property Name="RewardPoint" Type="int" />
+    <Property Name="state" Type="bit" />
+  </EntityType>
+  <EntityType Name="VolunteerReward">
+    <Key>
+      <PropertyRef Name="VolunteerID" />
+      <PropertyRef Name="RewardID" />
+    </Key>
+    <Property Name="VolunteerID" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="RewardID" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="RedeemDate" Type="datetime2" Precision="7" />
+    <Property Name="RedeemCount" Type="int" />
+    <Property Name="state" Type="bit" />
+  </EntityType>
+  <EntityType Name="XaPhuong">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="tenXaPhuong" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="quanHuyenId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Event__CategoryI__4D94879B">
+    <End Role="EventCategory" Type="Self.EventCategory" Multiplicity="0..1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventCategory">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registrat__Event__5165187F">
+    <End Role="Event" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="Registration">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registrat__Volun__5070F446">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+    <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="VolunteerID" />
+      </Principal>
+      <Dependent Role="Registration">
+        <PropertyRef Name="VolunteerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReviewLis__Revie__571DF1D5">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+    <End Role="ReviewList" Type="Self.ReviewList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="VolunteerID" />
+      </Principal>
+      <Dependent Role="ReviewList">
+        <PropertyRef Name="ReviewerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Volunteer__Rewar__48CFD27E">
+    <End Role="Reward" Type="Self.Reward" Multiplicity="1" />
+    <End Role="VolunteerReward" Type="Self.VolunteerReward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reward">
+        <PropertyRef Name="RewardID" />
+      </Principal>
+      <Dependent Role="VolunteerReward">
+        <PropertyRef Name="RewardID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Volunteer__Volun__47DBAE45">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+    <End Role="VolunteerReward" Type="Self.VolunteerReward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="VolunteerID" />
+      </Principal>
+      <Dependent Role="VolunteerReward">
+        <PropertyRef Name="VolunteerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuanHuyen_TinhThanhPho_tinhThanhPhoId">
+    <End Role="TinhThanhPho" Type="Self.TinhThanhPho" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QuanHuyen" Type="Self.QuanHuyen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TinhThanhPho">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="QuanHuyen">
+        <PropertyRef Name="tinhThanhPhoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Volunteer">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+    <End Role="Review" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="VolunteerID" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="VolunteerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TinhThanhPho_QuocGia_quocGiaId">
+    <End Role="QuocGia" Type="Self.QuocGia" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TinhThanhPho" Type="Self.TinhThanhPho" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuocGia">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TinhThanhPho">
+        <PropertyRef Name="quocGiaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Volunteer_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="Volunteer">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_XaPhuong_QuanHuyen_quanHuyenId">
+    <End Role="QuanHuyen" Type="Self.QuanHuyen" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="XaPhuong" Type="Self.XaPhuong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuanHuyen">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="XaPhuong">
+        <PropertyRef Name="quanHuyenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VolunteersDBModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventCategory" EntityType="Self.EventCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuanHuyen" EntityType="Self.QuanHuyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuocGia" EntityType="Self.QuocGia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReviewList" EntityType="Self.ReviewList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reward" EntityType="Self.Reward" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SysIndex" EntityType="Self.SysIndex" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TinhThanhPho" EntityType="Self.TinhThanhPho" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Volunteer" EntityType="Self.Volunteer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VolunteerReward" EntityType="Self.VolunteerReward" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="XaPhuong" EntityType="Self.XaPhuong" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Event__CategoryI__4D94879B" Association="Self.FK__Event__CategoryI__4D94879B">
+      <End Role="EventCategory" EntitySet="EventCategory" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registrat__Event__5165187F" Association="Self.FK__Registrat__Event__5165187F">
+      <End Role="Event" EntitySet="Event" />
+      <End Role="Registration" EntitySet="Registration" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registrat__Volun__5070F446" Association="Self.FK__Registrat__Volun__5070F446">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Registration" EntitySet="Registration" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReviewLis__Revie__571DF1D5" Association="Self.FK__ReviewLis__Revie__571DF1D5">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="ReviewList" EntitySet="ReviewList" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Volunteer__Rewar__48CFD27E" Association="Self.FK__Volunteer__Rewar__48CFD27E">
+      <End Role="Reward" EntitySet="Reward" />
+      <End Role="VolunteerReward" EntitySet="VolunteerReward" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Volunteer__Volun__47DBAE45" Association="Self.FK__Volunteer__Volun__47DBAE45">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="VolunteerReward" EntitySet="VolunteerReward" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuanHuyen_TinhThanhPho_tinhThanhPhoId" Association="Self.FK_QuanHuyen_TinhThanhPho_tinhThanhPhoId">
+      <End Role="TinhThanhPho" EntitySet="TinhThanhPho" />
+      <End Role="QuanHuyen" EntitySet="QuanHuyen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Volunteer" Association="Self.FK_Review_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Review" EntitySet="Review" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TinhThanhPho_QuocGia_quocGiaId" Association="Self.FK_TinhThanhPho_QuocGia_quocGiaId">
+      <End Role="QuocGia" EntitySet="QuocGia" />
+      <End Role="TinhThanhPho" EntitySet="TinhThanhPho" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Volunteer_Account" Association="Self.FK_Volunteer_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Volunteer" EntitySet="Volunteer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_XaPhuong_QuanHuyen_quanHuyenId" Association="Self.FK_XaPhuong_QuanHuyen_quanHuyenId">
+      <End Role="QuanHuyen" EntitySet="QuanHuyen" />
+      <End Role="XaPhuong" EntitySet="XaPhuong" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

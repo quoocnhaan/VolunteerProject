@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d2c44a624c3d4226a0bf8c934960690a" Name="Diagram1">
+        <EntityTypeShape EntityType="VolunteersDBModel.Account" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.Comment" Width="1.5" PointX="12.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.Event" Width="1.5" PointX="8.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.EventCategory" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.Notification" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.Organization" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.Post" Width="1.5" PointX="10.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.PostLike" Width="1.5" PointX="12.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.QuanHuyen" Width="1.5" PointX="15.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.QuocGia" Width="1.5" PointX="10.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.Ranking" Width="1.5" PointX="6" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.Registration" Width="1.5" PointX="10.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.Review" Width="1.5" PointX="10.5" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.ReviewList" Width="1.5" PointX="10.5" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.Reward" Width="1.5" PointX="11.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.SysIndex" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.TinhThanhPho" Width="1.5" PointX="13" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.Volunteer" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.VolunteerLikeEvent" Width="1.5" PointX="10.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.VolunteerReward" Width="1.5" PointX="13.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteersDBModel.XaPhuong" Width="1.5" PointX="17.5" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="VolunteersDBModel.FK__Notificat__Accou__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK_Organization_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK_Volunteer_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK_Comment_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK_Comment_Volunteer" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK__Event__CategoryI__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK__Registrat__Event__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK__Volunteer__Event__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK__PostLike__PostID__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK_Post_Volunteer" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK__PostLike__Volunt__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK_QuanHuyen_TinhThanhPho_tinhThanhPhoId" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK_XaPhuong_QuanHuyen_quanHuyenId" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK_TinhThanhPho_QuocGia_quocGiaId" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK_Rank_Volunteer" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK__Registrat__Volun__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK_Review_Volunteer" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK__ReviewLis__Revie__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK__Volunteer__Rewar__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK__Volunteer__Volun__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteersDBModel.FK__Volunteer__Volun__6D0D32F4" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
